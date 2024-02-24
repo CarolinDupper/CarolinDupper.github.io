@@ -65,56 +65,71 @@
         </div>
     </div>
 
-<!-- Timer Section -->
-<div class="timer-container box">
-    <h2>Timer → </h2>
-    <div class="timer-display" id="timer">120:00</div>
-    <div class="timer-buttons">
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="restartTimer()">Neustarten</button>
-    </div>
-</div>
-
-<script>
-    let initialTimerValue = 120 * 60; // Startwert in Sekunden (8 Minuten)
-    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
-    let timerInterval; // Variable, um das Timer-Intervall zu speichern
-
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timerValue / 60);
-        const seconds = timerValue % 60;
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        const timerDisplay = document.getElementById('timer');
-        timerDisplay.textContent = formattedTime;
-
-        // Change the background when the timer reaches 0
-        if (timerValue === 0) {
-            timerDisplay.classList.add('expired');
-        }
-    }
-
-    function startTimer() {
-        timerInterval = setInterval(function () {
-            if (timerValue <= 0) {
-                clearInterval(timerInterval);
-                alert('Zeit ist abgelaufen!');
-            } else {
-                timerValue--;
-                updateTimerDisplay();
+        <!-- Timer 1 Section -->
+        <div class="timer-container box">
+            <h2>Timer 1 → </h2>
+            <div class="timer-display" id="timer1">120:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer('timer1')">Start</button>
+                <button onclick="stopTimer('timer1')">Stop</button>
+                <button onclick="restartTimer('timer1')">Neustarten</button>
+            </div>
+        </div>
+    
+        <!-- Timer 2 Section -->
+        <div class="timer-container box">
+            <h2>Timer 2 → </h2>
+            <div class="timer-display" id="timer2">10:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer('timer2')">Start</button>
+                <button onclick="stopTimer('timer2')">Stop</button>
+                <button onclick="restartTimer('timer2')">Neustarten</button>
+            </div>
+        </div>
+    
+        <script>
+            let timers = {
+                timer1: { value: 120 * 60, interval: null },
+                timer2: { value: 10 * 60, interval: null }
+            };
+    
+            function updateTimerDisplay(timerId) {
+                const timer = timers[timerId];
+                const minutes = Math.floor(timer.value / 60);
+                const seconds = timer.value % 60;
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerDisplay = document.getElementById(timerId);
+                timerDisplay.textContent = formattedTime;
+    
+                // Change the background when the timer reaches 0
+                if (timer.value === 0) {
+                    timerDisplay.classList.add('expired');
+                }
             }
-        }, 1000); // Update every 1000 milliseconds (1 second)
-    }
-
-    function stopTimer() {
-        clearInterval(timerInterval);
-    }
-
-    function restartTimer() {
-        clearInterval(timerInterval);
-        timerValue = initialTimerValue;
-        updateTimerDisplay();
-    }
-</script>
+    
+            function startTimer(timerId) {
+                const timer = timers[timerId];
+                timer.interval = setInterval(function () {
+                    if (timer.value <= 0) {
+                        clearInterval(timer.interval);
+                        alert('Zeit ist abgelaufen!');
+                    } else {
+                        timer.value--;
+                        updateTimerDisplay(timerId);
+                    }
+                }, 1000); // Update every 1000 milliseconds (1 second)
+            }
+    
+            function stopTimer(timerId) {
+                clearInterval(timers[timerId].interval);
+            }
+    
+            function restartTimer(timerId) {
+                const timer = timers[timerId];
+                clearInterval(timer.interval);
+                timer.value = timerId === 'timer1' ? 30 * 60 : 45 * 60;
+                updateTimerDisplay(timerId);
+            }
+        </script>
 </body>
 </html>
