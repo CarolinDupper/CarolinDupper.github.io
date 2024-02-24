@@ -1,0 +1,168 @@
+/* styles.css */
+
+/* Container für die gesamte Seite */
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap; /* Damit die Boxen auf kleine Bildschirme reagieren */
+    justify-content: space-between;
+    max-width: auto; /* Passe die maximale Breite nach Bedarf an */
+    margin: 0 auto; /* Zentriere den Container auf der Seite */
+}
+
+/* Allgemeine Box-Stile */
+.box {
+    display: flex; /* Aktiviere Flexbox für die Box */
+    width: 100%;
+    margin: 5px; /* Abstand zwischen den Boxen */
+    box-sizing: border-box; /* Berücksichtige Padding und Border in der Breite */
+    padding: 15px;
+    border: 1px solid #ddd; /* Rahmen um jede Box */
+    overflow: hidden; /* Verhindere, dass der Inhalt über die Box hinausragt */
+}
+
+/* Blauer Hintergrund für die Schritte der Anleitung */
+.background {
+    background-color: #cfab56e2;
+    color: black;
+}
+
+
+
+/* Linke Seite (Anleitung) */
+.recipe-instructions {
+    flex: 3;
+}
+
+/* Rechte Seite (Bild und Zutaten) */
+.recipe-image-ingredients {
+    flex: 2;
+}
+
+/* Stil für den Bildcontainer */
+.image-container {
+    display: flex;
+    justify-content: space-between; /* Platzierung der Bilder mit Abstand dazwischen */
+}
+
+/* Stil für das Bild innerhalb des Containers */
+.image {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Textstil innerhalb der Box */
+.box div {
+    flex: 1; /* Der Text nimmt den verfügbaren Platz ein */
+}
+
+/* Stildefinitionen für die Zutaten-Tabelle */
+.ingredients-table {
+    display: flex;
+    flex-direction: column; /* Staple die Zutaten in einer Spalte */
+}
+
+/* Stildefinitionen für jede Zutatenreihe (eine Zeile der Tabelle) */
+.ingredients-row {
+    display: flex;
+    justify-content: space-between; /* Platz zwischen den Spalten */
+    margin-bottom: 5px; /* Abstand zwischen den Zeilen */
+}
+
+/* Stildefinitionen für die Menge (linke Spalte) */
+.quantity {
+    text-align: right; 
+ 
+}
+
+/* Stildefinitionen für den Zutatennamen (rechte Spalte) */
+.ingredient-name {
+    text-align: left; 
+  
+}
+
+/* Verstecke die Listenaufzählungspunkte */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.box2{
+    
+    width: 100%;
+    text-align: center;
+}
+
+.box3{
+    width: 100%;
+}
+
+.table{
+    width: 100%;
+}
+
+/* Annahme: Deine Tabelle hat eine Klasse namens "custom-table" */
+
+.custom-table {
+    border-collapse: collapse; /* Optionale Stildefinition für den Tabellenrahmen */
+    width: 100%; /* Breite der gesamten Tabelle */
+   
+}
+
+.custom-table td {
+    border: 1px solid #ddd; /* Optionaler Tabellenrahmen */
+    padding: 8px; /* Optionale Zellenauffüllung */
+}
+
+
+/* Die erste Spalte nimmt 30% der Breite ein */
+.custom-table td:first-child {
+    width: 30%;
+}
+
+/* Die zweite Spalte nimmt 70% der Breite ein */
+.custom-table td:nth-child(2) {
+    width: 70%;
+}
+
+
+.box5 {
+    margin: 5px; /* Abstand zwischen den Boxen */
+    box-sizing: border-box; /* Berücksichtige Padding und Border in der Breite */
+    padding: 15px;
+    width: 100%;
+   
+}
+.t2{
+    width: 100%;
+    text-align: center;
+}
+
+/* Füge diese Styles am Ende deiner CSS-Datei hinzu */
+
+.timer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.timer-display {
+    font-size: 24px; /* Ändere die Schriftgröße nach Bedarf */
+}
+
+.timer-buttons {
+    display: flex;
+    flex-direction: column; /* Ändere dies auf column, um die Buttons untereinander anzuordnen */
+}
+
+.timer-buttons button {
+    margin-top: 10px; /* Ändere den oberen Abstand der Buttons nach Bedarf */
+}
+
+/* Füge diese Styles am Ende deiner CSS-Datei hinzu */
+
+.timer-buttons button:active {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Hier kannst du die Schattenstärke und Farbe anpassen */
+}

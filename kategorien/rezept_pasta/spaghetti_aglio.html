@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaghetti aglio Rezept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
+    <div class="recipe-container">
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background3">
+            <h1>Spaghetti aglio, olio e peperoncino</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/spaghetti_aglio.png"  class="image">
+            <img src="img/c2.jpg"  class="image">
+            <img src="img/s2.png"  class="image">
+        </div>
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(1 Portionen)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>125g</td>
+                        <td>Spaghetti (aus Hartweizengrieß)</td>
+                    </tr>
+                    <tr>
+                        <td>¼</td>
+                        <td>Tomate(n)</td>
+                    </tr>
+                    <tr>
+                        <td>1 ¼ </td>
+                        <td>Knoblauchzehe(n)</td>
+                    </tr>
+                    <tr>
+                        <td>½</td>
+                        <td>Peperoni</td>
+                    </tr>
+                    <tr>
+                        <td>¼ El </td>
+                        <td>Petersilie</td>
+                    </tr>
+                    <tr>
+                        <td>½ Tl </td>
+                        <td>Gemüsebrühepulver (Delikatessbrühe)</td>
+                    </tr>
+                    <tr>
+                        <td>25ml </td>
+                        <td>Olivenöl, nativ</td>
+                    </tr>
+                    <tr>
+                        <td>10 g </td>
+                        <td>Hartkäse (z. B. Grana Padano oder Pecorino, 1 Jahr Reifegrad)</td>
+                    </tr>
+                    <tr>
+                        <td>¼ Tl </td>
+                        <td>Basilikum</td>
+                    </tr>
+                    <tr>
+                        <td>¼ Tl</td>
+                        <td>Oregano</td>
+                    </tr>
+                    <tr>
+                        <td>⅛ Tl </td>
+                        <td>Salz</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background3">
+            <h2>Schritte der Anleitung:</h2>
+            <ol>
+                <li>Zunächst die Spaghetti nach Packungsanleitung kochen. (Anmerkung: Kurz vor Ende der Garzeit benötigt ihr noch 2 Kellen vom Kochwasser, nicht vergessen.)</li>
+                <li>Den Hartkäse mit einer Reibe zerkleinern. Die Tomate in kleine Würfel schneiden und in eine Schüssel geben.</li>
+                <li>Dann den Knoblauch klein schneiden, leicht salzen, kurz warten und zerdrücken (durch das Salz wird der Knoblauch beim Zerdrücken zu einer Paste). Dies ebenfalls mit in die Schüssel geben.</li>
+                <li>Basilikum, Oregano, Petersilie und Peperoni ebenfalls klein schneiden und in die Schüssel geben. Das Delikatessbrühepulver hinzugeben und die Würzmischung ist fertig.</li>
+                <li>Nun die 2 Kellen des Kochwassers hinzugeben (unbedingt dieses Wasser verwenden, denn die Nudeln haben beim Kochen eine Menge Stärke abgegeben, die wir brauchen). Alles gut verrühren und 2 Minuten ziehen lassen. Wenn die Würzmischung leicht versalzen schmeckt, ist sie richtig.</li>        
+                <li>Die Nudeln gut abtropfen lassen und in einer heißen Pfanne maximal 1 Minute schwenken.</li>
+                <li>Nun die Würzmischung hinzugeben, gut durchschwenken und dann den geriebenen Hartkäse hinzugeben. Dieser wirkt als Bindemittel und die flüssige Würzmischung verbindet sich nun mit den Nudeln.</li>
+                <li>Vor dem Servieren noch das kalte Olivenöl darübergeben und vermischen. Nicht vorher! Das Öl verliert extrem an Geschmack und Qualität, wenn es erhitzt wird. Bei Bedarf jetzt noch etwas Hartkäse oben draufgeben.</li>
+                <li>Wie in vielen italienischen Rezepten ist es vor allem die korrekte Zubereitung, die den Unterschied macht.</li>
+            </ol>
+        </div>
+    </div>
+
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">8:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 8 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+</script>
+</body>
+</html>

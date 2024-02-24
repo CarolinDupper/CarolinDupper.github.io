@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Käsespätzle Rezept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
+    <div class="recipe-container">
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background6">
+            <h1>Käsespätzle</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/käsespätzle.png"  class="image">
+            <img src="img/k2.jpg"  class="image">
+            <img src="img/k3.jpg"  class="image">
+        </div>
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(1 Portionen)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>¼</td>
+                        <td>Zwiebel(n), gewürfelte</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Butter</td>
+                    </tr>
+                    <tr>
+                        <td>100 ml </td>
+                        <td>Sahne</td>
+                    </tr>
+                    <tr>
+                        <td>⅛Bund</td>
+                        <td>Petersilie, gehackte</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Salz und Pfeffer</td>
+                    </tr>
+                    <tr>
+                        <td>50 g </td>
+                        <td>Emmentaler, geriebener</td>
+                    </tr>
+                    <tr>
+                        <td>250 g</td>
+                        <td>Spätzle, frische, aus dem Kühlregal</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Fett für die Form</td>
+                    </tr>
+                </table>
+                
+            </div>
+            
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background6">
+            <h2>Schritte der Anleitung:</h2>
+            <ol>
+                <li>Die gewürfelte Zwiebel in etwas Butter glasig anbraten. Mit der Sahne ablöschen, gehackte Petersilie dazugeben und mit Salz und Pfeffer abschmecken. Kurz aufkochen lassen, dann die Hälfte vom Käse dazugeben und gut durchrühren. Die Spätzle unterheben. </li>
+                <li>Die Mischung in eine gefettete Auflaufform geben und mit dem restlichen Käse bestreuen. </li>
+                <li>Im heißen Backofen bei 200 °C Ober-/Unterhitze ca. 20 Minuten überbacken, bis die gewünschte Bräune erreicht ist. </li>
+            </ol>
+        </div>
+    </div>
+
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">20:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 20 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+</script>
+</body>
+</html>

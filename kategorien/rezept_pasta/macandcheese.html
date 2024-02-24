@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac & Cheese Rezept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
+    <div class="recipe-container">
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background">
+            <h1>Mac & Cheese</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/macandcheese.jpg" class="image">
+            <img src="img/m2.jpg" class="image">
+            <img src="img/m3.jpg" class="image">
+        </div>
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(3 Portionen)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>400 g</td>
+                        <td>große Muschel-Nudeln (oder eine Nudelform nach Wahl)</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Knoblauchknolle</td>
+                    </tr>
+                    <tr>
+                        <td>3 El</td>
+                        <td>Butter</td>
+                    </tr>
+                    <tr>
+                        <td>45 g</td>
+                        <td>Mehl</td>
+                    </tr>
+                    <tr>
+                        <td>650 ml</td>
+                        <td>Milch</td>
+                    </tr>
+                    <tr>
+                        <td>200 ml</td>
+                        <td>Sahne</td>
+                    </tr>
+                    <tr>
+                        <td>1 cup</td>
+                        <td>Parmigiano Reggiano, gerieben</td>
+                    </tr>
+                    <tr>
+                        <td>1 cup</td>
+                        <td>Cheddar (scharf), gerieben</td>
+                    </tr>
+                    <tr>
+                        <td> 1 El</td>
+                        <td>Paprika</td>
+                    </tr>
+                    <tr>
+                        <td>1 El</td>
+                        <td>Chiliflocken (nach Geschmack anpassen)</td>
+                    </tr>
+                    <tr>
+                        <td>nach Geschmack</td>
+                        <td>Salz und Pfeffer</td>
+                    </tr>
+                </table>
+                <h3>Breadcrumb-Kruste:</h3>
+                <table class="custom-table">
+                    <tr>
+                        <td>120 g</td>
+                        <td>Panko-Brösel</td>
+                    </tr>
+                    <tr>
+                        <td>2 El</td>
+                        <td>Butter</td>
+                    </tr>
+                    <tr>
+                        <td>1 Tl</td>
+                        <td>Rosmarin</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Salz</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background">
+            <h2>Schritte der Anleitung:</h2>
+            <ol>
+                <li>Schneide den oberen Teil deiner Knoblauchknolle ab und lege sie auf ein Stück Alufolie.</li>
+                <li>Olivenöl und Salz einsprühen und die Folie fest verschließen.</li>
+                <li>Im Ofen oder in der Luftfritteuse bei 190C für 45 Minuten oder bis goldbraun.</li>
+                <li>Bereite deine Breadcrumb-Kruste vor, indem du alle Zutaten in eine Pfanne gibst und röstest bis die Brotkrumen goldbraun sind.</li>
+                <li>Bring einen Topf mit gesalzenem Wasser zum Kochen und koche deine Pasta leicht unter al dente.</li>
+                <li>In der Zwischenzeit bereite deine Käsesoße vor. </li>
+                <li>Schmelze in einem Topf bei schwacher bis mittlerer Hitze deine Butter und füge das Mehl hinzu.</li>
+                <li>Sofort schlagen, um Klumpen zu entfernen und 1-2 Minuten weiter kochen, um den Mehlgeschmack loszuwerden. </li>
+                <li> Langsam, Stück für Stück, fügen Sie Ihre Milch hinzu und rühren Sie ständig, bis die Mischung dick ist.
+                    Schalten Sie die Hitze ab, fügen Sie Sahne, Käse, Gewürze, gebratenen Knoblauch, Salz und Pfeffer hinzu und mischen Sie gut, bis der Käse geschmolzen ist.</li>
+                <li>Nudeln hinzugeben, umrühren und in eine Backform geben</li>
+                <li>Über die gerösteten Brotkrumen streuen und bei 180 für 25-30 Minuten backen. Servieren.</li>
+            </ol>
+        </div>
+    </div>
+
+
+        <!-- Timer 1 Section -->
+        <div class="timer-container box">
+            <h2>Timer 1 → </h2>
+            <div class="timer-display" id="timer1">30:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer('timer1')">Start</button>
+                <button onclick="stopTimer('timer1')">Stop</button>
+                <button onclick="restartTimer('timer1')">Neustarten</button>
+            </div>
+        </div>
+    
+        <!-- Timer 2 Section -->
+        <div class="timer-container box">
+            <h2>Timer 2 → </h2>
+            <div class="timer-display" id="timer2">45:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer('timer2')">Start</button>
+                <button onclick="stopTimer('timer2')">Stop</button>
+                <button onclick="restartTimer('timer2')">Neustarten</button>
+            </div>
+        </div>
+    
+        <script>
+            let timers = {
+                timer1: { value: 30 * 60, interval: null },
+                timer2: { value: 45 * 60, interval: null }
+            };
+    
+            function updateTimerDisplay(timerId) {
+                const timer = timers[timerId];
+                const minutes = Math.floor(timer.value / 60);
+                const seconds = timer.value % 60;
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerDisplay = document.getElementById(timerId);
+                timerDisplay.textContent = formattedTime;
+    
+                // Change the background when the timer reaches 0
+                if (timer.value === 0) {
+                    timerDisplay.classList.add('expired');
+                }
+            }
+    
+            function startTimer(timerId) {
+                const timer = timers[timerId];
+                timer.interval = setInterval(function () {
+                    if (timer.value <= 0) {
+                        clearInterval(timer.interval);
+                        alert('Zeit ist abgelaufen!');
+                    } else {
+                        timer.value--;
+                        updateTimerDisplay(timerId);
+                    }
+                }, 1000); // Update every 1000 milliseconds (1 second)
+            }
+    
+            function stopTimer(timerId) {
+                clearInterval(timers[timerId].interval);
+            }
+    
+            function restartTimer(timerId) {
+                const timer = timers[timerId];
+                clearInterval(timer.interval);
+                timer.value = timerId === 'timer1' ? 30 * 60 : 45 * 60;
+                updateTimerDisplay(timerId);
+            }
+        </script>
+     
+
+</body>
+</html>
+

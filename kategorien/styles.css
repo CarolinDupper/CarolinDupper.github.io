@@ -1,0 +1,128 @@
+
+/* Allgemeine Stildefinitionen für Bilder */
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-link {
+    position: relative;
+    width: 30%; /* Du kannst die Breite nach Bedarf anpassen */
+    margin: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-link:hover .overlay {
+    opacity: 1;
+}
+
+.overlay-text {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 100%;
+    text-align: center;
+    padding: 0.25cm;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.categories {
+    height: auto;
+    background-color: #edebeb;
+    color: #000000;
+}
+
+.type-a,
+.type-b {
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zentriert den Text horizontal */
+    overflow: hidden;
+}
+
+/* Hintergrundfarben für Kategorien */
+.category1 { background-color: #fac373; }
+.category2 { background-color: #972616; }
+.category3 { background-color: #fbc15e; }
+.category4 { background-color: #b7c065; }
+.category5 { background-color: #ed6e37; }
+.category6 { background-color: #9c4100; }
+.category7 { background-color: #764328; }
+.category8 { background-color: #5a7912; }
+.category9 { background-color: #9c460d; }
+.category10 { background-color: #ffe5a6; }
+.category11 { background-color: #c0ccf4; }
+.category12 { background-color: #878532; }
+.category13 { background-color: #f0483b; }
+.category14 { background-color: #a4641d; }
+.category15 { background-color: #f92d30; }
+.category16 { background-color: #f6b6db; }
+.category17 { background-color: #f5caaa; }
+/* Füge weitere Kategorien nach Bedarf hinzu */
+
+.type-a img,
+.type-b img {
+    height: 100%;
+    width: auto;
+    max-height: 100%; /* Bilder werden die Höhe von 11,11% nicht überschreiten */
+    max-width: 40%; /* Bilder passen sich der Breite der Box an */
+    display: block;
+}
+
+.type-a img {
+    margin-left: auto;
+}
+
+.type-b img {
+    margin-right: auto;
+}
+
+/* Änderungen für .type-b: Tausche die Position von img und h2 */
+.type-b img {
+    order: -1; /* Ändert die Reihenfolge auf das vorherige Element */
+}
+
+.type-b h2 {
+    margin-left: 10px; /* Füge Abstand zwischen Text und Bild hinzu */
+    order: 0; /* Ändert die Reihenfolge auf das aktuelle Element */
+}
+
+/* Zentriere den Text in .type-a und .type-b */
+.type-a h2,
+.type-b h2 {
+    margin: 0; /* Setze den Standardmargin auf 0 */
+}

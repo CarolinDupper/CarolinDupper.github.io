@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spätzleteig Rezept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
+    <div class="recipe-container">
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background5">
+            <h1>Spätzleteig</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/spaetzleteig.png"  class="image">
+            <img src="img/sp2.png"  class="image">
+            <img src="img/...png"  class="image">
+        </div>
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(1 Portionen)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>83,3g</td>
+                        <td>Mehl</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Ei</td>
+                    </tr>
+                    <tr>
+                        <td>33,3ml</td>
+                        <td>Milch</td>
+                    </tr>
+                    <tr>
+                        <td>3,33g </td>
+                        <td>Butter, geschmolzene</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>Salz</td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background5">
+            <h2>Schritte der Anleitung:</h2>
+            <ol>
+                <li>Das Mehl in eine größere Schüssel füllen und eine Mulde in die Mitte drücken. Die Eier, die Milch, das Salz und die geschmolzene, abgekühlte Butter hineingeben. Alles zu einem zähen, klebrigen Teig verrühren. Das geht mit einem Rührlöffel aus Holz bei entsprechender Muskelkraft oder auch mit Knethaken eines Mixers. Den Teig 5 - 10 Minuten ruhen lassen.</li>
+                <li>In einem großen Topf Wasser zum Kochen bringen und salzen. Wer darin fit ist, kann nun die Spätzle vom Brett schaben. Ich habe einen Spätzlemacher dazu - der wird aufgesetzt und der Teig mit einem Schaber durch Löcher ins Wasser gedrückt. Dabei entstehen die kleinen kugeligen Knöpfli. Super geht das auch mit einem Spätzleschwob - den sollte man aber nicht zu sehr füllen, sonst quillt der Teig über. Hierbei entstehen lange dünne Spätzle. Man kann den Teig auch mit zwei Esslöffeln zu Nocken formen und Mehlknödel kochen.</li>
+                <li>Wenn die Spätzle gar sind, steigen sie an die Oberfläche und können abgeschöpft werden. Das muss man bei dieser Menge immer wieder zwischendurch machen, sonst fällt der Teig auf die fertigen Spätzle im Topf und verklebt damit.</li>
+                <li>Passt toll zu Gerichten, bei denen eine schöne Sauce entsteht und die man auf die Spätzle geben kann. Klassisch sind auch Käsespätzle mit Röstzwiebeln und zerlaufenem kräftigem Käse.</li>
+                <li>Tipp: Der Teig ist sehr klebrig, daher spült man am besten alles gleich mit kaltem Wasser ab. In heißem Wasser verklebt der Teig noch viel mehr und lässt sich nur schwer entfernen. Wer später spült, sollte alles einweichen. </li>
+            </ol>
+        </div>
+    </div>
+
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">10:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 10 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+</script>
+</body>
+</html>
