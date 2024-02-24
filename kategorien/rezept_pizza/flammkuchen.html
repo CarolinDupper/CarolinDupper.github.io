@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flammkuchen  Rezept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
+    <div class="recipe-container">
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background4">
+            <h1>Flammkuchen </h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/flammkuchen.png" class="image">
+            <img src="img/f2.jpg" class="image">
+            <img src="img/f3.jpg" class="image">
+        </div>
+        
+        
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(1 Blech)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>250 g</td>
+                        <td>selbstgemachter Flammkuchenteig (Rezept siehe Tippbox)</td>
+                    </tr>
+                    <tr>
+                        <td>100 g</td>
+                        <td>Schmand</td>
+                    </tr>
+                    <tr>
+                        <td>125 g</td>
+                        <td>Magerquark</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>etwas Salz und Pfeffer </td>
+                    </tr>
+                    <tr>
+                        <td>½ - 1 </td>
+                        <td>Zwiebel</td>
+                    </tr>
+                    <tr>
+                        <td>75 g </td>
+                        <td>Speckwürfel</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>etwas Schnittlauch zum Garnieren</td>
+                    </tr>
+                   
+                </table>
+            </div>
+           
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background4">
+            <h2>Schritte der Anleitung:</h2>
+            <ol>
+                <li>Den Flammkuchenteig nach Rezept zubereiten. Nach der Ruhezeit von 30 Minuten Teig halbieren und dünn, oval ausrollen, sodass jeder Teig auf ein Blech passt. Blech mit Backpapier belegen und Teigfladen darauflegen. </li>
+                <li>Für den Belag Schmand mit Quark und Salz und Pfeffer verrühren. Belag auf die Flammkuchenteige verteilen und glatt streichen. Zwiebeln nach Belieben klein schneiden und mit den Schinkenwürfeln ebenfalls auf den Flammkuchen verteilen. Ofen auf 250 Grad (Umluft: 230 Grad) vorheizen. Flammkuchen im vorgeheizten Ofen ca. 10 Min. backen, bis er braun wird oder Blasen wirft. Kurz vor dem Servieren noch etwas, in Röllchen geschnittenen, Schnittlauch auf den Flammkuchen streuen.</li>
+
+            </ol>
+        </div>
+    </div>
+
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">10:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 10 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+</script>
+</body>
+</html>
