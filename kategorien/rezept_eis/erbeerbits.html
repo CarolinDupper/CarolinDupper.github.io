@@ -3,41 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erdbeerbites </title>
+    <title>Erdbeerbites Rezept</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="oben">
-        <h1>Erdbeerbites</h1>
-    </div>
-        
+    <header class="box">
+        <!-- Hier dein Banner-Inhalt -->
+        <div>Rezeptsammlung</div>
+    </header>
+
     <div class="recipe-container">
-        <div class="recipe-instructions">
-            <h2>Anleitung:</h2>
+        <!-- Erste Box mit Überschrift -->
+        <div class="box2 h1 background">
+            <h1>Erdbeerbites</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="img/erdbeerbites.png" class="image">
+            <img src="img/e2.png" class="image">
+            <img src="img/e3.png" class="image">
+        </div>
+        
+        
+
+        <!-- Vierte Box mit Zutaten -->
+        <div class="box">
+            <div class="text-container">
+                <h2>Zutaten: </h2>
+                <p>(1 Portionen)</p>
+                <table class="custom-table">
+                    <tr>
+                        <td>300 g</td>
+                        <td>Erdbeeren</td>
+                    </tr>
+                    <tr>
+                        <td>3-5 El</td>
+                        <td>Griechischer Jogurt</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>etwas Süßungsmittel oder Honig</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Schokolade</td>
+                    </tr>
+                </table>
+            </div>
+           
+        </div>
+        
+        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+        <div class="box5 background">
+            <h2>Schritte der Anleitung:</h2>
             <ol>
                 <li>Erdbeeren klein schneiden</li>
                 <li>Mit Jogurt und Süßungsmittel schön vermischen</li>
                 <li>Ca. 1,5 El von der Mischung auf einem mit Backpapier belegten Tablett geben und für mindestens 2 Stunden in den Gefrierschrank stellen</li>
                 <li>In der Zwischenzeit Schokolade im Wasserbad zum schmelzen bringen und abkühlenlassen. Anschließend die Erdbeerbites in die Schokolade geben, dekorieren und für weitere 10min in den Gefrierschrank legen.</li>
-               
-                
             </ol>
-        </div>
-
-        <!-- Rechte Seite (Bild und Zutaten) -->
-        <div class="recipe-image-ingredients">
-            <div class="image-container">
-                <img src="img/erdbeerbites.png" alt="erdbeerbites" class="image">
-            </div>
-            <h2>Zutaten:</h2>
-            <ul>
-                <li>300g Erdbeeren </li>
-                <li>3-5EL Griechischer Jogurt</li>
-                <li>etwas Süßungsmittel oder Honig</li>
-                <li>Schokolade</li>
-            </ul>
         </div>
     </div>
 
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">120:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 120 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+</script>
 </body>
 </html>
