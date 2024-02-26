@@ -108,13 +108,11 @@
                 if (i === 4 && mengen[i] > 0) {
                     einheit = 'Stück';
                 }
-                if(menge[i] === 0){
-                    einheit = ''
-                }
-    
+                
                 const neueMenge = mengen[i] * portionen;
     
                 // Zutatenliste aktualisieren
+                
                 document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
             }
         }
