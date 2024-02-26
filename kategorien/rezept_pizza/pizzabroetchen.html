@@ -109,7 +109,7 @@
                 let einheit = 'g';
     
                 // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
-                if ((i === 0 || i === 1 || i === 4 || i === 5) && mengen[i] > 0) {
+                if (i === 0 || i === 1 || i === 4 || i === 5) {
                     einheit = 'g';
                 } else if ((i === 3 || i === 6) && mengen[i] > 0) {
                     einheit = 'Stück';
