@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
-                <div class="box5 background3">
+                <div class="box5 background2">
                     <h2>Schritte der Anleitung:</h2>
                     <ol>
                         <li>Teile deinen Laib in zwei Hälften, stelle sie beiseite.</li>
@@ -104,13 +104,13 @@
                         if ((i === 0) && mengen[i] > 0) {
                             einheit = 'Stück';
                         }
-                        if ((i === 2 || i===4 || i===6 || i===7) && mengen[i] > 0) {
+                        if ((i === 2 || i===4 || i===6 || i===7) ) {
                             einheit = '';
                         }
                         if ((i === 3 || i===5) && mengen[i] > 0) {
                             einheit = 'cup';
                         }
-                        if ((i===8) && mengen[i] > 0) {
+                        if (i===8 && mengen[i] > 0) {
                             einheit = 'El';
                         }
                         const neueMenge = mengen[i] * portionen;
