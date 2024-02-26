@@ -100,19 +100,28 @@
             // Zutaten und Mengen für eine Portion
             const zutaten = ["Schinken oder Salami", "Salami", "Packung Mais", "Paprika", "Schlagsahne", "Käse", "Brötchen zum Aufbacken", "Pilze", "..."];
             const mengen = [50, 50, 1/2, 1/2, 50, 50, 2, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
-
+    
             // Aktuelle Portionsgröße holen
             const portionen = parseInt(document.getElementById("portionen").value);
-
+    
             // Zutatenliste für die gewählte Portionsgröße erstellen
             for (let i = 0; i < zutaten.length; i++) {
+                let einheit = 'g';
+    
+                // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
+                if ([0, 1, 4, 5].includes(i) && mengen[i] > 0) {
+                    einheit = 'g';
+                } else if ([3, 6].includes(i) && mengen[i] > 0) {
+                    einheit = 'Stück';
+                }
+    
                 const neueMenge = mengen[i] * portionen;
-
+    
                 // Zutatenliste aktualisieren
-                document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
+                document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
             }
         }
-        
+    
         // Initialisierung beim Laden der Seite
         updateZutatenListe();
     </script>
