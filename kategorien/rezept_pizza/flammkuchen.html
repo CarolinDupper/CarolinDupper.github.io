@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flammkuchen Rezept</title>
+    <title>Flammkuchen  Rezept</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,12 +23,11 @@
             <img src="img/f2.png" class="image">
             <img src="img/f3.png" class="image">
         </div>
-
-        <!-- Vierte Box mit Zutaten -->
+        <!-- Vierte Box mit Zutaten als Tabelle -->
         <div class="box">
             <div class="text-container">
                 <h2>Zutaten: </h2>
-                <p>(1 Blech)</p>
+                <p>Blech: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
                 <table class="custom-table" id="zutatenTable">
                     <tr>
                         <th>Menge</th>
@@ -44,7 +43,7 @@
                     </tr>
                     <tr>
                         <td id="menge3"></td>
-                        <td>Magerquark</td>
+                        <td>Magerquark </td>
                     </tr>
                     <tr>
                         <td id="menge4"></td>
@@ -62,16 +61,21 @@
                         <td id="menge7"></td>
                         <td>etwas Schnittlauch zum Garnieren</td>
                     </tr>
+                    <tr>
+                        <td id="menge8"></td>
+                        <td>evtl Tomaten</td>
+                    </tr>
+                   
                 </table>
             </div>
         </div>
-
         <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
         <div class="box5 background5">
             <h2>Schritte der Anleitung:</h2>
             <ol>
                 <li>Den Flammkuchenteig nach Rezept zubereiten. Nach der Ruhezeit von 30 Minuten Teig halbieren und dünn, oval ausrollen, sodass jeder Teig auf ein Blech passt. Blech mit Backpapier belegen und Teigfladen darauflegen. </li>
                 <li>Für den Belag Schmand mit Quark und Salz und Pfeffer verrühren. Belag auf die Flammkuchenteige verteilen und glatt streichen. Zwiebeln nach Belieben klein schneiden und mit den Schinkenwürfeln ebenfalls auf den Flammkuchen verteilen. Ofen auf 250 Grad (Umluft: 230 Grad) vorheizen. Flammkuchen im vorgeheizten Ofen ca. 10 Min. backen, bis er braun wird oder Blasen wirft. Kurz vor dem Servieren noch etwas, in Röllchen geschnittenen, Schnittlauch auf den Flammkuchen streuen.</li>
+
             </ol>
         </div>
     </div>
@@ -79,7 +83,7 @@
     <!-- Timer Section -->
     <div class="timer-container box">
         <h2>Timer → </h2>
-        <div class="timer-display" id="timer">10:00</div>
+        <div class="timer-display" id="timer">15:00</div>
         <div class="timer-buttons">
             <button onclick="startTimer()">Start</button>
             <button onclick="stopTimer()">Stop</button>
@@ -90,8 +94,8 @@
     <script>
         function updateZutatenListe() {
             // Zutaten und Mengen für eine Portion
-            const zutaten = ["selbstgemachter Flammkuchenteig (Rezept siehe Tippbox)", "Schmand", "Magerquark", "etwas Salz und Pfeffer", "Zwiebel", "Speckwürfel", "etwas Schnittlauch zum Garnieren"];
-            const mengen = [1, 100, 125, 0, 0.5, 75, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+            const zutaten = ["selbstgemachter Flammkuchenteig (Rezept siehe Tippbox)", "Schmand", "Magerquark", "etwas Salz und Pfeffer", "Zwiebel", "Speckwürfel", "etwas Schnittlauch zum Garnieren", "Tomaten"];
+            const mengen = [250, 100, 125, 0, 1/2, 75, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
     
             // Aktuelle Portionsgröße holen
             const portionen = parseInt(document.getElementById("portionen").value);
@@ -101,10 +105,8 @@
                 let einheit = 'g';
     
                 // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
-                if (i === 0) {
-                    einheit = 'Teig(e)';
-                } else if (i === 4) {
-                    einheit = 'Zwiebel(n)';
+                if (i === 4 && mengen[i] > 0) {
+                    einheit = 'Stück';
                 }
     
                 const neueMenge = mengen[i] * portionen;
@@ -120,5 +122,45 @@
     
     <script>
         // Dein Timer-Skript bleibt unverändert
-        let initialTimerValue = 10 * 60; // Startwert in Sekunden (10 Minuten)
-        let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+        let initialTimerValue = 15 * 60; // Startwert in Sekunden (8 Minuten)
+    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerValue / 60);
+        const seconds = timerValue % 60;
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = formattedTime;
+
+        // Change the background when the timer reaches 0
+        if (timerValue === 0) {
+            timerDisplay.classList.add('expired');
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerValue <= 0) {
+                clearInterval(timerInterval);
+                alert('Zeit ist abgelaufen!');
+            } else {
+                timerValue--;
+                updateTimerDisplay();
+            }
+        }, 1000); // Update every 1000 milliseconds (1 second)
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function restartTimer() {
+        clearInterval(timerInterval);
+        timerValue = initialTimerValue;
+        updateTimerDisplay();
+    }
+    </script>
+
+</body>
+</html>
