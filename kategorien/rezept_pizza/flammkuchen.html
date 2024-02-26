@@ -93,35 +93,30 @@
 
     <script>
         function updateZutatenListe() {
-    // Zutaten und Mengen für eine Portion
-    const zutaten = ["Schinken oder Salami", "Salami", "Packung Mais", "Paprika", "Schlagsahne", "Käse", "Brötchen zum Aufbacken", "Pilze", "..."];
-    const mengen = [50, 50, 1/2, 1/2, 50, 50, 3, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
-
-    // Aktuelle Portionsgröße holen
-    const portionen = parseInt(document.getElementById("portionen").value);
-
-    // Zutatenliste für die gewählte Portionsgröße erstellen
-    for (let i = 0; i < zutaten.length; i++) {
-        let einheit = 'g';
-
-        // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
-        if ((i === 3 || i === 2 || i === 6) && mengen[i] > 0) {
-            einheit = 'Stück';
+            // Zutaten und Mengen für eine Portion
+            const zutaten = ["selbstgemachter Flammkuchenteig (Rezept siehe Tippbox)", "Schmand", "Magerquark", "etwas Salz und Pfeffer", "Zwiebel", "Speckwürfel", "etwas Schnittlauch zum Garnieren", "Tomaten"];
+            const mengen = [250, 100, 125, 0, 1/2, 75, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+    
+            // Aktuelle Portionsgröße holen
+            const portionen = parseInt(document.getElementById("portionen").value);
+    
+            // Zutatenliste für die gewählte Portionsgröße erstellen
+            for (let i = 0; i < zutaten.length; i++) {
+                let einheit = 'g';
+    
+                // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
+                if (i === 4 && mengen[i] > 0) {
+                    einheit = 'Stück';
+                }
+                
+                const neueMenge = mengen[i] * portionen;
+    
+                // Zutatenliste aktualisieren
+                
+                document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
+            }
         }
-
-        // Überprüfen, ob für diese Zutat eine Menge eingegeben wurde
-        const eingabeElement = document.getElementById(`menge${i + 1}`);
-        const eingegebeneMenge = mengen[i] * portionen;
-
-        if (eingegebeneMenge !== 0) {
-            eingabeElement.textContent = `${eingegebeneMenge} ${einheit}`;
-        } else {
-            // Setze ein Leerzeichen in der Zeile, wenn die Menge 0 ist
-            eingabeElement.textContent = " ";
-        }
-    }
-}
-
+    
         // Initialisierung beim Laden der Seite
         updateZutatenListe();
     </script>
