@@ -29,38 +29,42 @@
             <div class="text-container">
                 <h2>Zutaten: </h2>
                 <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
-                <table class="custom-table">
+                <table class="custom-table" id="zutatenTable">
+                    <tr>
+                        <th>Zutat</th>
+                        <th>Menge</th>
+                    </tr>
                     <tr>
                         <td>Schinken oder Salami</td>
-                        <td>50 g</td>
+                        <td id="mengeSchinken">50 g</td>
                     </tr>
                     <tr>
                         <td>Salami</td>
-                        <td>50 g</td>
+                        <td id="mengeSalami">50 g</td>
                     </tr>
                     <tr>
-                        <td>Packung Mais</td>
-                        <td>1/2 </td>
+                        <td>1/2 Packung Mais</td>
+                        <td id="mengeMais"></td>
                     </tr>
                     <tr>
-                        <td>Paprika</td>
-                        <td>1/2 </td>
+                        <td>1/2 Paprika</td>
+                        <td id="mengePaprika"></td>
                     </tr>
                     <tr>
-                        <td>Schlagsahne</td>
-                        <td>50 g </td>
+                        <td>50 g Schlagsahne</td>
+                        <td id="mengeSchlagsahne"></td>
                     </tr>
                     <tr>
-                        <td>Käse</td>
-                        <td>50 g </td>
+                        <td>50 g Käse</td>
+                        <td id="mengeKaese"></td>
                     </tr>
                     <tr>
-                        <td>Brötchen zum Aufbacken</td>
-                        <td>2 </td>
+                        <td>2 Brötchen zum Aufbacken</td>
+                        <td id="mengeBroetchen"></td>
                     </tr>
                     <tr>
                         <td>Pilze</td>
-                        <td></td>
+                        <td id="mengePilze"></td>
                     </tr>
                     <tr>
                         <td>...</td>
@@ -93,12 +97,8 @@
 
     <script>
         function updateZutatenListe() {
-            // Zutatenliste leeren
-            const zutatenTable = document.getElementById("zutatenTable");
-            zutatenTable.innerHTML = "";
-
             // Zutaten und Mengen für eine Portion
-            const zutaten = ["Schinken oder Salami", "Salami", "Packung Mais", "Paprika", "Schlagsahne", "Käse", "Brötchen zum Aufbacken", "Pilze", "..."];
+            const zutaten = ["Schinken oder Salami", "Salami", "1/2 Packung Mais", "1/2 Paprika", "50 g Schlagsahne", "50 g Käse", "2 Brötchen zum Aufbacken", "Pilze", "..."];
             const mengen = [50, 50, 1/2, 1/2, 50, 50, 2, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
 
             // Aktuelle Portionsgröße holen
@@ -109,15 +109,10 @@
                 const neueMenge = mengen[i] * portionen;
 
                 // Zutatenliste aktualisieren
-                const row = zutatenTable.insertRow(-1);
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-
-                cell1.textContent = zutaten[i];
-                cell2.textContent = `${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
+                document.getElementById(`menge${zutaten[i].replace(/ /g, "")}`).textContent = `${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
             }
         }
-
+        
         // Initialisierung beim Laden der Seite
         updateZutatenListe();
     </script>
