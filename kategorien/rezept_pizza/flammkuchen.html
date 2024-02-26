@@ -80,17 +80,6 @@
         </div>
     </div>
 
-    <!-- Timer Section -->
-    <div class="timer-container box">
-        <h2>Timer → </h2>
-        <div class="timer-display" id="timer">15:00</div>
-        <div class="timer-buttons">
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
-            <button onclick="restartTimer()">Neustarten</button>
-        </div>
-    </div>
-
     <script>
         function updateZutatenListe() {
             // Zutaten und Mengen für eine Portion
@@ -121,9 +110,19 @@
         updateZutatenListe();
     </script>
     
-    <script>
-        // Dein Timer-Skript bleibt unverändert
-        let initialTimerValue = 15 * 60; // Startwert in Sekunden (8 Minuten)
+<!-- Timer Section -->
+<div class="timer-container box">
+    <h2>Timer → </h2>
+    <div class="timer-display" id="timer">10:00</div>
+    <div class="timer-buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <button onclick="restartTimer()">Neustarten</button>
+    </div>
+</div>
+
+<script>
+    let initialTimerValue = 10 * 60; // Startwert in Sekunden (8 Minuten)
     let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
     let timerInterval; // Variable, um das Timer-Intervall zu speichern
 
@@ -161,7 +160,7 @@
         timerValue = initialTimerValue;
         updateTimerDisplay();
     }
-    </script>
+</script>
 
 </body>
 </html>
