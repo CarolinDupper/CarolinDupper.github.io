@@ -106,12 +106,12 @@
     
             // Zutatenliste für die gewählte Portionsgröße erstellen
             for (let i = 0; i < zutaten.length; i++) {
-                
+                let einheit = 'g';
     
                 // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
-                if ([0, 1, 4, 5].includes(i) && mengen[i] > 0) {
+                if ((i === 0 || i === 1 || i === 4 || i === 5) && mengen[i] > 0) {
                     einheit = 'g';
-                } else if ([3, 6].includes(i) && mengen[i] > 0) {
+                } else if ((i === 3 || i === 6) && mengen[i] > 0) {
                     einheit = 'Stück';
                 }
     
