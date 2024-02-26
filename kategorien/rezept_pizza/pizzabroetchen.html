@@ -24,14 +24,49 @@
             <img src="img/pb3.jpg" class="image">
         </div>
 
-        <!-- Vierte Box mit Zutaten -->
+        <!-- Vierte Box mit Zutaten als Tabelle -->
         <div class="box">
             <div class="text-container">
                 <h2>Zutaten: </h2>
                 <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
-                <ul id="zutatenListe">
-                    <!-- Die Zutaten werden hier dynamisch eingefügt -->
-                </ul>
+                <table class="custom-table">
+                    <tr>
+                        <td>Schinken oder Salami</td>
+                        <td>50 g</td>
+                    </tr>
+                    <tr>
+                        <td>Salami</td>
+                        <td>50 g</td>
+                    </tr>
+                    <tr>
+                        <td>1/2 Packung Mais</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1/2 Paprika</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>50 g Schlagsahne</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>50 g Käse</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2 Brötchen zum Aufbacken</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Pilze</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>...</td>
+                        <td></td>
+                    </tr>
+                </table>
             </div>
         </div>
         
@@ -59,7 +94,8 @@
     <script>
         function updateZutatenListe() {
             // Zutatenliste leeren
-            document.getElementById("zutatenListe").innerHTML = "";
+            const zutatenTable = document.getElementById("zutatenTable");
+            zutatenTable.innerHTML = "";
 
             // Zutaten und Mengen für eine Portion
             const zutaten = ["Schinken oder Salami", "Salami", "1/2 Packung Mais", "1/2 Paprika", "50 g Schlagsahne", "50 g Käse", "2 Brötchen zum Aufbacken", "Pilze", "..."];
@@ -73,10 +109,12 @@
                 const neueMenge = mengen[i] * portionen;
 
                 // Zutatenliste aktualisieren
-                const zutatenListe = document.getElementById("zutatenListe");
-                const listItem = document.createElement("li");
-                listItem.textContent = `${zutaten[i]}: ${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
-                zutatenListe.appendChild(listItem);
+                const row = zutatenTable.insertRow(-1);
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+
+                cell1.textContent = zutaten[i];
+                cell2.textContent = `${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
             }
         }
 
