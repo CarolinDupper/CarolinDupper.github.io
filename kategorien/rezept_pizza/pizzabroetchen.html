@@ -23,79 +23,70 @@
             <img src="img/pb2.jpg" class="image">
             <img src="img/pb3.jpg" class="image">
         </div>
-        
-        
 
         <!-- Vierte Box mit Zutaten -->
         <div class="box">
             <div class="text-container">
                 <h2>Zutaten: </h2>
-                <p>(1 Portionen)</p>
-                <table class="custom-table">
-                    <tr>
-                        <td>(50 g</td>
-                        <td>schinken oder doppelte menge salami)</td>
-                    </tr>
-                    <tr>
-                        <td>50 g</td>
-                        <td>Salami</td>
-                    </tr>
-                    <tr>
-                        <td>1/2</td>
-                        <td>Packung Mais</td>
-                    </tr>
-                    <tr>
-                        <td>1/2</td>
-                        <td>Paprika</td>
-                    </tr>
-                    <tr>
-                        <td>50 g </td>
-                        <td>Schlagsahne</td>
-                    </tr>
-                    <tr>
-                        <td>50 g </td>
-                        <td>Käse</td>
-                    </tr>
-                    <tr>
-                        <td>2 </td>
-                        <td>Brötchen zum aufbacken</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Pilze</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>...</td>
-                    </tr>
-                </table>
+                <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
+                <ul id="zutatenListe">
+                    <!-- Die Zutaten werden hier dynamisch eingefügt -->
+                </ul>
             </div>
-           
         </div>
         
         <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
         <div class="box5 background3">
             <h2>Schritte der Anleitung:</h2>
             <ol>
-                <li>Alle Zutaten mischen und auf den aufgeschnitten Brötchenhälften verteilen.</li>
-                <li>Bei 200 Grad (Ober- Unterhitze) circa 15 Minuten in den Ofen. (oder auf die Backeiten/temperatur der Brötchenverpackung achten)</li>
+                <li>Alle Zutaten mischen und auf den aufgeschnittenen Brötchenhälften verteilen.</li>
+                <li>Bei 200 Grad (Ober- Unterhitze) circa 15 Minuten in den Ofen (oder auf die Backzeiten/-temperatur der Brötchenverpackung achten).</li>
             </ol>
         </div>
     </div>
 
-<!-- Timer Section -->
-<div class="timer-container box">
-    <h2>Timer → </h2>
-    <div class="timer-display" id="timer">15:00</div>
-    <div class="timer-buttons">
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="restartTimer()">Neustarten</button>
+    <!-- Timer Section -->
+    <div class="timer-container box">
+        <h2>Timer → </h2>
+        <div class="timer-display" id="timer">15:00</div>
+        <div class="timer-buttons">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="stopTimer()">Stop</button>
+            <button onclick="restartTimer()">Neustarten</button>
+        </div>
     </div>
-</div>
 
-<script>
-    let initialTimerValue = 15 * 60; // Startwert in Sekunden (8 Minuten)
+    <script>
+        function updateZutatenListe() {
+            // Zutatenliste leeren
+            document.getElementById("zutatenListe").innerHTML = "";
+
+            // Zutaten und Mengen für eine Portion
+            const zutaten = ["Schinken oder Salami", "Salami", "1/2 Packung Mais", "1/2 Paprika", "50 g Schlagsahne", "50 g Käse", "2 Brötchen zum Aufbacken", "Pilze", "..."];
+            const mengen = [50, 50, 1/2, 1/2, 50, 50, 2, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+
+            // Aktuelle Portionsgröße holen
+            const portionen = parseInt(document.getElementById("portionen").value);
+
+            // Zutatenliste für die gewählte Portionsgröße erstellen
+            for (let i = 0; i < zutaten.length; i++) {
+                const neueMenge = mengen[i] * portionen;
+
+                // Zutatenliste aktualisieren
+                const zutatenListe = document.getElementById("zutatenListe");
+                const listItem = document.createElement("li");
+                listItem.textContent = `${zutaten[i]}: ${neueMenge} ${neueMenge === 1 ? 'Stück' : 'g'}`;
+                zutatenListe.appendChild(listItem);
+            }
+        }
+
+        // Initialisierung beim Laden der Seite
+        updateZutatenListe();
+    </script>
+    
+    <script>
+        // Dein Timer-Skript bleibt unverändert
+        let initialTimerValue = 15 * 60; // Startwert in Sekunden (8 Minuten)
     let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
     let timerInterval; // Variable, um das Timer-Intervall zu speichern
 
@@ -133,6 +124,7 @@
         timerValue = initialTimerValue;
         updateTimerDisplay();
     }
-</script>
+    </script>
+
 </body>
 </html>
