@@ -150,6 +150,8 @@
         </div>
     
         <script>
+            document.getElementById('alarmSound').play();
+
             let timers = {
                 timer1: { value: 30 * 60, interval: null },
                 timer2: { value: 1 * 60, interval: null }
@@ -189,7 +191,7 @@
             function restartTimer(timerId) {
                 const timer = timers[timerId];
                 clearInterval(timer.interval);
-                timer.value = timerId === 'timer1' ? 30 * 60 : 45 * 60;
+                timer.value = timerId === 'timer1' ? 30 * 60 : 10 * 60;
                 updateTimerDisplay(timerId);
             }
         </script>
