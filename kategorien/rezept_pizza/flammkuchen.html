@@ -109,18 +109,15 @@
                 document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
             }
         }
-        function playAlarmSound() {
-        const alarmSound = document.getElementById('alarmSound');
-        alarmSound.play();
-        }
         
+            
         // Funktion zum Starten des Timers
         function startTimer(timerId) {
             const timer = timers[timerId];
             timer.interval = setInterval(function () {
                 if (timer.value <= 0) {
                     clearInterval(timer.interval);
-                    playAlarmSound(); // Funktion zum Abspielen des Alarms aufrufen
+                    playAlarmWithUserAction(); // Funktion zum Abspielen des Alarms mit Benutzeraktion aufrufen
                     alert('Zeit ist abgelaufen!');
                 } else {
                     timer.value--;
@@ -128,6 +125,7 @@
                 }
             }, 1000); // Update every 1000 milliseconds (1 second)
         }
+
         // Initialisierung beim Laden der Seite
         updateZutatenListe();
     </script>
