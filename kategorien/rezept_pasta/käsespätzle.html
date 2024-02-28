@@ -85,8 +85,8 @@
             <script>
                 function updateZutatenListe() {
                     // Zutaten und Mengen für eine Portion
-                    const zutaten = ["1/4", "0", "100", "1/8", "0", "50", "250", "0"];
-                    const mengen = [125, 80, 3, 3/4, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+                    const zutaten = ["Zwiebel(n), gewürfelte", "Butter", "Sahne", "Petersilie, gehackte", "Salz und Pfeffer", "Emmentaler, geriebener", "Spätzle, frische, aus dem Kühlregal", "Fett für die Form"];
+                    const mengen = [1/4, 0, 100, 1/8, 0, 50, 250, 0]; // Menge in Gramm oder Stück, je nach Bedarf
             
                     // Aktuelle Portionsgröße holen
                     const portionen = parseInt(document.getElementById("portionen").value);
@@ -94,9 +94,7 @@
                     // Zutatenliste für die gewählte Portionsgröße erstellen
                     for (let i = 0; i < zutaten.length; i++) {
                         let einheit = 'g';
-            
-                        // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
-                      
+        
                         if ((i === 0 || i===1 || i===4 || i===7) ) {
                             einheit = '';
                         }
