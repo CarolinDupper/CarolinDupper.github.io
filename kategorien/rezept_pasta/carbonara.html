@@ -24,102 +24,141 @@
             <img src="img/c3.jpg" class="image">
         </div>
         
-        
-
-        <!-- Vierte Box mit Zutaten -->
-        <div class="box">
-            <div class="text-container">
-                <h2>Zutaten: </h2>
-                <p>(1 Portionen)</p>
-                <table class="custom-table">
-                    <tr>
-                        <td>125 g</td>
-                        <td>Spaghetti</td>
-                    </tr>
-                    <tr>
-                        <td>80-100g</td>
-                        <td>Guanciale (oder Pancetta), gewürfelt</td>
-                    </tr>
-                    <tr>
-                        <td>3 </td>
-                        <td>Eigelb</td>
-                    </tr>
-                    <tr>
-                        <td>3/4 cup</td>
-                        <td>frisch geriebener Pecorino Romano</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Pfeffer, frisch gemahlen</td>
-                    </tr>
-                </table>
+       
+                <!-- Vierte Box mit Zutaten als Tabelle -->
+                <div class="box">
+                    <div class="text-container">
+                        <h2>Zutaten: </h2>
+                        <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
+                        <table class="custom-table" id="zutatenTable">
+                            <tr>
+                                <th>Menge</th>
+                                <th>Zutat</th>
+                            </tr>
+                            <tr>
+                                <td id="menge1"></td>
+                                <td>Spaghetti</td>
+                            </tr>
+                            <tr>
+                                <td id="menge2"></td>
+                                <td>Guanciale (oder Pancetta), gewürfelt</td>
+                            </tr>
+                            <tr>
+                                <td id="menge3"></td>
+                                <td>Eigelb</td>
+                            </tr>
+                            <tr>
+                                <td id="menge4"></td>
+                                <td>frisch geriebener Pecorino Romano</td>
+                            </tr>
+                            <tr>
+                                <td id="menge5"></td>
+                                <td>Kleine Handvoll Petersilie, gehackt</td>
+                            </tr>
+                           
+                           
+                            
+                        </table>
+                    </div>
+                </div>
+                <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+                <div class="box5 background2">
+                    <h2>Schritte der Anleitung:</h2>
+                    <ol>
+                        <li>In einem Topf mit kochendem, gesalzenem Wasser die Spaghetti al dente kochen.</li>
+                        <li>Während die Pasta kocht, das gewürfelte Guanciale in einer trockenen Pfanne bei mittlerer Hitze anbraten, um das Fett auszulassen, bis es knusprig goldbraun ist.</li>
+                        <li>In einer separaten Schüssel die 3 Eigelb zusammen mit dem Pecorino und einer ordentlichen Menge frisch geriebenen schwarzen Pfeffer geben. Gut zu einer Paste verrühren.</li>
+                        <li>Nachdem die Pasta gekocht ist, die Pasta, das knusprige Guanciale und einen Schuss des Nudelwassers in die Schüssel mit der Eimischung geben und gut vermengen. Falls nötig, mehr Nudelwasser hinzufügen, um die Konsistenz der Sauce anzupassen.</li>
+                        <li>Mit mehr Käse und Pfeffer servieren.</li>
+                    </ol>
+                </div>
             </div>
-           
-        </div>
         
-        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
-        <div class="box5 background2">
-            <h2>Schritte der Anleitung:</h2>
-            <ol>
-                <li>In einem Topf mit kochendem, gesalzenem Wasser die Spaghetti al dente kochen.</li>
-                <li>Während die Pasta kocht, das gewürfelte Guanciale in einer trockenen Pfanne bei mittlerer Hitze anbraten, um das Fett auszulassen, bis es knusprig goldbraun ist.</li>
-                <li>In einer separaten Schüssel die 3 Eigelb zusammen mit dem Pecorino und einer ordentlichen Menge frisch geriebenen schwarzen Pfeffer geben. Gut zu einer Paste verrühren.</li>
-                <li>Nachdem die Pasta gekocht ist, die Pasta, das knusprige Guanciale und einen Schuss des Nudelwassers in die Schüssel mit der Eimischung geben und gut vermengen. Falls nötig, mehr Nudelwasser hinzufügen, um die Konsistenz der Sauce anzupassen.</li>
-                <li>Mit mehr Käse und Pfeffer servieren.</li>
-            </ol>
+           
+            <script>
+                function updateZutatenListe() {
+                    // Zutaten und Mengen für eine Portion
+                    const zutaten = ["Spaghetti", "Guanciale (oder Pancetta), gewürfelt", "Eigelb", "frisch geriebener Pecorino Romano", "Pfeffer, frisch gemahlen"];
+                    const mengen = [125, 80, 3, 3/4, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+            
+                    // Aktuelle Portionsgröße holen
+                    const portionen = parseInt(document.getElementById("portionen").value);
+            
+                    // Zutatenliste für die gewählte Portionsgröße erstellen
+                    for (let i = 0; i < zutaten.length; i++) {
+                        let einheit = 'g';
+            
+                        // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
+                      
+                        if ((i === 2 || i===4 ) ) {
+                            einheit = '';
+                        }
+                        if ((i === 3 ) && mengen[i] > 0) {
+                            einheit = 'cup';
+                        }
+                        
+                        const neueMenge = mengen[i] * portionen;
+            
+                        // Zutatenliste aktualisieren
+                        document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
+                    }
+                }
+            
+                // Initialisierung beim Laden der Seite
+                updateZutatenListe();
+            </script>
+        <!-- Timer Section -->
+        <div class="timer-container box">
+            <h2>Timer → </h2>
+            <div class="timer-display" id="timer">8:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+                <button onclick="restartTimer()">Neustarten</button>
+            </div>
         </div>
-    </div>
 
-<!-- Timer Section -->
-<div class="timer-container box">
-    <h2>Timer → </h2>
-    <div class="timer-display" id="timer">8:00</div>
-    <div class="timer-buttons">
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="restartTimer()">Neustarten</button>
-    </div>
-</div>
+        <script>
+            let initialTimerValue = 8 * 60; // Startwert in Sekunden (8 Minuten)
+            let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+            let timerInterval; // Variable, um das Timer-Intervall zu speichern
 
-<script>
-    let initialTimerValue = 8 * 60; // Startwert in Sekunden (8 Minuten)
-    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
-    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timerValue / 60);
+                const seconds = timerValue % 60;
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerDisplay = document.getElementById('timer');
+                timerDisplay.textContent = formattedTime;
 
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timerValue / 60);
-        const seconds = timerValue % 60;
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        const timerDisplay = document.getElementById('timer');
-        timerDisplay.textContent = formattedTime;
+                // Change the background when the timer reaches 0
+                if (timerValue === 0) {
+                    timerDisplay.classList.add('expired');
+                }
+            }
 
-        // Change the background when the timer reaches 0
-        if (timerValue === 0) {
-            timerDisplay.classList.add('expired');
-        }
-    }
+            function startTimer() {
+                timerInterval = setInterval(function () {
+                    if (timerValue <= 0) {
+                        clearInterval(timerInterval);
+                        alert('Zeit ist abgelaufen!');
+                    } else {
+                        timerValue--;
+                        updateTimerDisplay();
+                    }
+                }, 1000); // Update every 1000 milliseconds (1 second)
+            }
 
-    function startTimer() {
-        timerInterval = setInterval(function () {
-            if (timerValue <= 0) {
+            function stopTimer() {
                 clearInterval(timerInterval);
-                alert('Zeit ist abgelaufen!');
-            } else {
-                timerValue--;
+            }
+
+            function restartTimer() {
+                clearInterval(timerInterval);
+                timerValue = initialTimerValue;
                 updateTimerDisplay();
             }
-        }, 1000); // Update every 1000 milliseconds (1 second)
-    }
-
-    function stopTimer() {
-        clearInterval(timerInterval);
-    }
-
-    function restartTimer() {
-        clearInterval(timerInterval);
-        timerValue = initialTimerValue;
-        updateTimerDisplay();
-    }
-</script>
-</body>
+        </script>
+        
+    </body>
 </html>
+        
