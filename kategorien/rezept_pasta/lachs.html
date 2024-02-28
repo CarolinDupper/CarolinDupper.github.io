@@ -24,84 +24,173 @@
             <img src="img/l3.png"  class="image">
         </div>
 
-        <!-- Vierte Box mit Zutaten -->
-        <div class="box">
-            <div class="text-container">
-                <h2>Zutaten: </h2>
-                <p>(1 Portionen)</p>
-                <table class="custom-table">
-                    <tr>
-                        <td>125 g</td>
-                        <td>Bandnudeln</td>
-                    </tr>
-                    <tr>
-                        <td>100 g</td>
-                        <td>Lachs</td>
-                    </tr>
-                    <tr>
-                        <td>50 g </td>
-                        <td>Sahne</td>
-                    </tr>
-                    <tr>
-                        <td>25 g</td>
-                        <td>Crème fraîche</td>
-                    </tr>
-                    <tr>
-                        <td>25 ml</td>
-                        <td>Milch</td>
-                    </tr>
-                    <tr>
-                        <td>¼ </td>
-                        <td>mittelgroße Zwiebel</td>
-                    </tr>
-                    <tr>
-                        <td>¼ </td>
-                        <td>Knoblauchzehe</td>
-                    </tr>
-                    <tr>
-                        <td>¼ </td>
-                        <td>Eigelb</td>
-                    </tr>
-                    <tr>
-                        <td>etwas</td>
-                        <td>gekörnte Brühe</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Salz</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Öl</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Zitronensaft</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>evtl. Dill</td>
-                    </tr>
-                </table>
-                
+                <!-- Vierte Box mit Zutaten als Tabelle -->
+                <div class="box">
+                    <div class="text-container">
+                        <h2>Zutaten: </h2>
+                        <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
+                        <table class="custom-table" id="zutatenTable">
+                            <tr>
+                                <th>Menge</th>
+                                <th>Zutat</th>
+                            </tr>
+                            <tr>
+                                <td id="menge1"></td>
+                                <td>Bandnudeln</td>
+                            </tr>
+                            <tr>
+                                <td id="menge2"></td>
+                                <td>Lachs</td>
+                            </tr>
+                            <tr>
+                                <td id="menge3"></td>
+                                <td>Sahne</td>
+                            </tr>
+                            <tr>
+                                <td id="menge4"></td>
+                                <td>Crème fraîche</td>
+                            </tr>
+                            <tr>
+                                <td id="menge5"></td>
+                                <td>Milch</td>
+                            </tr>
+                            <tr>
+                                <td id="menge6"></td>
+                                <td>mittelgroße Zwiebel</td>
+                            </tr>
+                            <tr>
+                                <td id="menge7"></td>
+                                <td>Knoblauchzehe</td>
+                            </tr>
+                            <tr>
+                                <td id="menge8"></td>
+                                <td>Eigelb</td>
+                            </tr>
+                            <tr>
+                                <td id="menge9"></td>
+                                <td>gekörnte Brühe</td>
+                            </tr>
+                            <tr>
+                                <td id="menge10"></td>
+                                <td>Salz</td>
+                            </tr>
+                            <tr>
+                                <td id="menge11"></td>
+                                <td>Öl</td>
+                            </tr>
+                            <tr>
+                                <td id="menge12"></td>
+                                <td>Zitronensaft</td>
+                            </tr>
+                            <tr>
+                                <td id="menge13"></td>
+                                <td>evtl. Dill</td>
+                            </tr>
+                           
+                            
+                        </table>
+                    </div>
+                </div>
+                <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+                <div class="box5 background4">
+                    <h2>Schritte der Anleitung:</h2>
+                    <ol>
+                        <li>Die Bandnudeln nach Packungsangabe in Salzwasser garen.</li>
+                        <li>Währenddessen die Zwiebel und den Knoblauch in kleine Würfel schneiden und mit etwas Öl in einer Pfanne oder einem kleinen Brattopf glasig werden lassen. Den Lachs in mundgerechte Stücke schneiden und zu den Zwiebeln geben. </li>
+                        <li>Kurz bevor der Lachs ganz durchgegart ist, die Sahne, Milch und Crème fraîche dazugeben und mit der gekörnten Brühe und etwas Zitronensaft abschmecken.
+                            Etwas von der Sahnesoße in einen Becher füllen, das Eigelb dazugeben und verrühren. Die Mischung in die Sahnesoße rühren und kurz aufkochen lassen. Wer mag, kann die Soße mit Dill verfeinern.</li>
+                        <li>Die fertigen Nudeln abschütten und zusammen mit der Lachs-Sahnesoße servieren.</li>
+                        <li>Tipp:
+                            Gefrorenen Lachs in Stücke schneiden, bevor er ganz aufgetaut ist, das geht einfacher. </li>
+                    </ol>
+                </div>
             </div>
-            
-        </div>
         
-        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
-        <div class="box5 background4">
-            <h2>Schritte der Anleitung:</h2>
-            <ol>
-                <li>Die Bandnudeln nach Packungsangabe in Salzwasser garen.</li>
-                <li>Währenddessen die Zwiebel und den Knoblauch in kleine Würfel schneiden und mit etwas Öl in einer Pfanne oder einem kleinen Brattopf glasig werden lassen. Den Lachs in mundgerechte Stücke schneiden und zu den Zwiebeln geben. </li>
-                <li>Kurz bevor der Lachs ganz durchgegart ist, die Sahne, Milch und Crème fraîche dazugeben und mit der gekörnten Brühe und etwas Zitronensaft abschmecken.
-                    Etwas von der Sahnesoße in einen Becher füllen, das Eigelb dazugeben und verrühren. Die Mischung in die Sahnesoße rühren und kurz aufkochen lassen. Wer mag, kann die Soße mit Dill verfeinern.</li>
-                <li>Die fertigen Nudeln abschütten und zusammen mit der Lachs-Sahnesoße servieren.</li>
-                <li>Tipp:
-                    Gefrorenen Lachs in Stücke schneiden, bevor er ganz aufgetaut ist, das geht einfacher. </li>
-            </ol>
+           
+            <script>
+                function updateZutatenListe() {
+                    // Zutaten und Mengen für eine Portion
+                    const zutaten = ["Bandnudeln", "Lachs", "Sahne", "Crème fraîche", "Milch", "mittelgroße Zwiebel", "Knoblauchzehe", "Eigelb", "gekörnte Brühe", "Salz", "Öl", "Zitronensaft", "evtl. Dill"];
+                    const mengen = [125, 100, 50, 25, 25, 1/4, 1/4, 1/4, 0, 0, 0, 0, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+            
+                    // Aktuelle Portionsgröße holen
+                    const portionen = parseInt(document.getElementById("portionen").value);
+            
+                    // Zutatenliste für die gewählte Portionsgröße erstellen
+                    for (let i = 0; i < zutaten.length; i++) {
+                        let einheit = 'g';
+        
+                        if ((i === 5 || i===6 || i===7 || i===8 || i===9 || i===10 || i===11 || i===12) ) {
+                            einheit = '';
+                        }
+                        if ((i === 4 ) ) {
+                            einheit = 'ml';
+                        }
+                        
+                        
+                        const neueMenge = mengen[i] * portionen;
+            
+                        // Zutatenliste aktualisieren
+                        document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
+                    }
+                }
+            
+                // Initialisierung beim Laden der Seite
+                updateZutatenListe();
+            </script>
+        
+        <!-- Timer Section -->
+        <div class="timer-container box">
+            <h2>Timer → </h2>
+            <div class="timer-display" id="timer">20:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+                <button onclick="restartTimer()">Neustarten</button>
+            </div>
         </div>
-    </div>
 
-</body>
+        <script>
+            let initialTimerValue = 20 * 60; // Startwert in Sekunden (8 Minuten)
+            let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+            let timerInterval; // Variable, um das Timer-Intervall zu speichern
+
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timerValue / 60);
+                const seconds = timerValue % 60;
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerDisplay = document.getElementById('timer');
+                timerDisplay.textContent = formattedTime;
+
+                // Change the background when the timer reaches 0
+                if (timerValue === 0) {
+                    timerDisplay.classList.add('expired');
+                }
+            }
+
+            function startTimer() {
+                timerInterval = setInterval(function () {
+                    if (timerValue <= 0) {
+                        clearInterval(timerInterval);
+                        alert('Zeit ist abgelaufen!');
+                    } else {
+                        timerValue--;
+                        updateTimerDisplay();
+                    }
+                }, 1000); // Update every 1000 milliseconds (1 second)
+            }
+
+            function stopTimer() {
+                clearInterval(timerInterval);
+            }
+
+            function restartTimer() {
+                clearInterval(timerInterval);
+                timerValue = initialTimerValue;
+                updateTimerDisplay();
+            }
+        </script>
+        
+    </body>
 </html>
+        
