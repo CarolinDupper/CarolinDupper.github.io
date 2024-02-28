@@ -23,112 +23,153 @@
             <img src="img/k2.jpg"  class="image">
             <img src="img/k3.jpg"  class="image">
         </div>
-
-        <!-- Vierte Box mit Zutaten -->
-        <div class="box">
-            <div class="text-container">
-                <h2>Zutaten: </h2>
-                <p>(1 Portionen)</p>
-                <table class="custom-table">
-                    <tr>
-                        <td>¼</td>
-                        <td>Zwiebel(n), gewürfelte</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Butter</td>
-                    </tr>
-                    <tr>
-                        <td>100 ml </td>
-                        <td>Sahne</td>
-                    </tr>
-                    <tr>
-                        <td>⅛Bund</td>
-                        <td>Petersilie, gehackte</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Salz und Pfeffer</td>
-                    </tr>
-                    <tr>
-                        <td>50 g </td>
-                        <td>Emmentaler, geriebener</td>
-                    </tr>
-                    <tr>
-                        <td>250 g</td>
-                        <td>Spätzle, frische, aus dem Kühlregal</td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Fett für die Form</td>
-                    </tr>
-                </table>
-                
+                <!-- Vierte Box mit Zutaten als Tabelle -->
+                <div class="box">
+                    <div class="text-container">
+                        <h2>Zutaten: </h2>
+                        <p>Portionen: <input type="number" id="portionen" value="1" min="1" oninput="updateZutatenListe()"></p>
+                        <table class="custom-table" id="zutatenTable">
+                            <tr>
+                                <th>Menge</th>
+                                <th>Zutat</th>
+                            </tr>
+                            <tr>
+                                <td id="menge1"></td>
+                                <td>Zwiebel(n), gewürfelte</td>
+                            </tr>
+                            <tr>
+                                <td id="menge2"></td>
+                                <td>Butter</td>
+                            </tr>
+                            <tr>
+                                <td id="menge3"></td>
+                                <td>Sahne</td>
+                            </tr>
+                            <tr>
+                                <td id="menge4"></td>
+                                <td>Petersilie, gehackte</td>
+                            </tr>
+                            <tr>
+                                <td id="menge5"></td>
+                                <td>Salz und Pfeffer</td>
+                            </tr>
+                            <tr>
+                                <td id="menge6"></td>
+                                <td>Emmentaler, geriebener</td>
+                            </tr>
+                            <tr>
+                                <td id="menge7"></td>
+                                <td>Spätzle, frische, aus dem Kühlregal</td>
+                            </tr>
+                            <tr>
+                                <td id="menge8"></td>
+                                <td>Fett für die Form</td>
+                            </tr>
+                           
+                            
+                        </table>
+                    </div>
+                </div>
+                <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
+                <div class="box5 background6">
+                    <h2>Schritte der Anleitung:</h2>
+                    <ol>
+                        <li>Die gewürfelte Zwiebel in etwas Butter glasig anbraten. Mit der Sahne ablöschen, gehackte Petersilie dazugeben und mit Salz und Pfeffer abschmecken. Kurz aufkochen lassen, dann die Hälfte vom Käse dazugeben und gut durchrühren. Die Spätzle unterheben. </li>
+                        <li>Die Mischung in eine gefettete Auflaufform geben und mit dem restlichen Käse bestreuen. </li>
+                        <li>Im heißen Backofen bei 200 °C Ober-/Unterhitze ca. 20 Minuten überbacken, bis die gewünschte Bräune erreicht ist. </li>
+                    </ol>
+                </div>
             </div>
-            
-        </div>
         
-        <!-- Fünfte Box mit blauem Hintergrund für Schritte der Anleitung -->
-        <div class="box5 background6">
-            <h2>Schritte der Anleitung:</h2>
-            <ol>
-                <li>Die gewürfelte Zwiebel in etwas Butter glasig anbraten. Mit der Sahne ablöschen, gehackte Petersilie dazugeben und mit Salz und Pfeffer abschmecken. Kurz aufkochen lassen, dann die Hälfte vom Käse dazugeben und gut durchrühren. Die Spätzle unterheben. </li>
-                <li>Die Mischung in eine gefettete Auflaufform geben und mit dem restlichen Käse bestreuen. </li>
-                <li>Im heißen Backofen bei 200 °C Ober-/Unterhitze ca. 20 Minuten überbacken, bis die gewünschte Bräune erreicht ist. </li>
-            </ol>
+           
+            <script>
+                function updateZutatenListe() {
+                    // Zutaten und Mengen für eine Portion
+                    const zutaten = ["1/4", "0", "100", "1/8", "0", "50", "250", "0"];
+                    const mengen = [125, 80, 3, 3/4, 0]; // Menge in Gramm oder Stück, je nach Bedarf
+            
+                    // Aktuelle Portionsgröße holen
+                    const portionen = parseInt(document.getElementById("portionen").value);
+            
+                    // Zutatenliste für die gewählte Portionsgröße erstellen
+                    for (let i = 0; i < zutaten.length; i++) {
+                        let einheit = 'g';
+            
+                        // Manuell Einheiten für bestimmte Zutaten und Mengen festlegen
+                      
+                        if ((i === 0 || i===1 || i===4 || i===7) ) {
+                            einheit = '';
+                        }
+                        if ((i === 2 ) ) {
+                            einheit = 'ml';
+                        }
+                        if ((i === 3 ) ) {
+                            einheit = 'Bund';
+                        }
+                        
+                        const neueMenge = mengen[i] * portionen;
+            
+                        // Zutatenliste aktualisieren
+                        document.getElementById(`menge${i + 1}`).textContent = `${neueMenge} ${einheit}`;
+                    }
+                }
+            
+                // Initialisierung beim Laden der Seite
+                updateZutatenListe();
+            </script>
+        
+        <!-- Timer Section -->
+        <div class="timer-container box">
+            <h2>Timer → </h2>
+            <div class="timer-display" id="timer">20:00</div>
+            <div class="timer-buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+                <button onclick="restartTimer()">Neustarten</button>
+            </div>
         </div>
-    </div>
 
-<!-- Timer Section -->
-<div class="timer-container box">
-    <h2>Timer → </h2>
-    <div class="timer-display" id="timer">20:00</div>
-    <div class="timer-buttons">
-        <button onclick="startTimer()">Start</button>
-        <button onclick="stopTimer()">Stop</button>
-        <button onclick="restartTimer()">Neustarten</button>
-    </div>
-</div>
+        <script>
+            let initialTimerValue = 20 * 60; // Startwert in Sekunden (8 Minuten)
+            let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
+            let timerInterval; // Variable, um das Timer-Intervall zu speichern
 
-<script>
-    let initialTimerValue = 20 * 60; // Startwert in Sekunden (8 Minuten)
-    let timerValue = initialTimerValue; // Timer-Wert, der aktualisiert wird
-    let timerInterval; // Variable, um das Timer-Intervall zu speichern
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timerValue / 60);
+                const seconds = timerValue % 60;
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerDisplay = document.getElementById('timer');
+                timerDisplay.textContent = formattedTime;
 
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timerValue / 60);
-        const seconds = timerValue % 60;
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        const timerDisplay = document.getElementById('timer');
-        timerDisplay.textContent = formattedTime;
+                // Change the background when the timer reaches 0
+                if (timerValue === 0) {
+                    timerDisplay.classList.add('expired');
+                }
+            }
 
-        // Change the background when the timer reaches 0
-        if (timerValue === 0) {
-            timerDisplay.classList.add('expired');
-        }
-    }
+            function startTimer() {
+                timerInterval = setInterval(function () {
+                    if (timerValue <= 0) {
+                        clearInterval(timerInterval);
+                        alert('Zeit ist abgelaufen!');
+                    } else {
+                        timerValue--;
+                        updateTimerDisplay();
+                    }
+                }, 1000); // Update every 1000 milliseconds (1 second)
+            }
 
-    function startTimer() {
-        timerInterval = setInterval(function () {
-            if (timerValue <= 0) {
+            function stopTimer() {
                 clearInterval(timerInterval);
-                alert('Zeit ist abgelaufen!');
-            } else {
-                timerValue--;
+            }
+
+            function restartTimer() {
+                clearInterval(timerInterval);
+                timerValue = initialTimerValue;
                 updateTimerDisplay();
             }
-        }, 1000); // Update every 1000 milliseconds (1 second)
-    }
-
-    function stopTimer() {
-        clearInterval(timerInterval);
-    }
-
-    function restartTimer() {
-        clearInterval(timerInterval);
-        timerValue = initialTimerValue;
-        updateTimerDisplay();
-    }
-</script>
-</body>
+        </script>
+        
+    </body>
 </html>
+        
